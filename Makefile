@@ -17,8 +17,8 @@ install:	all
 		ln $(MANDIR)/readany.1 $(MANDIR)/writeany.1
 
 clean:
-		rm *.o a.out core
+		rm -f *.o a.out core
 
 clobber:	clean
-		rm readany writeany
+		rm -f readany writeany
 
