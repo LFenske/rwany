@@ -1,0 +1,61 @@
+NAME
+  
+  readany, writeany -- read or write arbitrary portions of a file or device
+
+
+SYNOPSIS
+
+  usage: readany  <filename> <start pos> <end pos>
+  usage: writeany <filename> <start pos> <end pos>
+
+  Positions can have the forms <number>, +<number>, or -<number> meaning
+  absolute position, relative to previous parameter, relative to end of file.
+
+
+DESCRIPTION
+
+  Readany and writeany will seek directly to a position in a file (even
+  a device file connected to a random-access device) and read or write a
+  specified number of bytes.  Readany reads a file and writes the bytes
+  to stdout.  Writeany reads bytes from stdin and writes them to a file.
+
+  The maximum buffer size that readany and writeany will use to access a
+  file is 256 KBytes.
+
+  Each position parameter can have one of three formats.
+
+  - A <number> by itself designates an absolute position in the file.
+
+  - A <number> preceded by a plus sign ("+") designates a position
+    relative to the previous parameter.  If there is a plus sign in the
+    <start pos> parameter, it designates a position relative to the
+    beginning of the file, i.e. it is an absolute position.
+
+  - A <number> preceded by a minus sign ("-") designates a position
+    relative to the end of the file.
+
+  The position parameters are integers in decimal, octal, or
+  hexadecimal.  Hexadecimal integers begin with "0x", octal integers
+  begin with "0", and decimal integers begin with a decimal digit other
+  than "0".
+
+
+EXAMPLES
+
+  Read a 1024 byte sector of a disc and display the sector as
+  hexadecimal bytes:
+
+    readany /dev/rdsk/h70 0x12400 +0x400 | xd -b
+  
+  Copy the boot information (first 8KB) from one disc to another:
+
+    readany /dev/rdsk/h70 0 8192 | writeany /dev/rdsk/h71 0 8192
+  
+  Strip off the first and last two characters from a file:
+
+    readany original-file 2 -2 > stripped-file
+
+
+RCS REVISION OF THIS MAN PAGE
+
+  $Header$
