@@ -5,11 +5,14 @@ MANDIR = /usr/ih/man/cat1
 
 all:		readany writeany any.1
 
-readany:	readany.c
-		$(CC) -O readany.c -o readany
+readany:	readany.c  common.o common.h
+		$(CC) -O readany.c  common.o -o readany
 
-writeany:	writeany.c
-		$(CC) -O writeany.c -o writeany
+writeany:	writeany.c common.o common.h
+		$(CC) -O writeany.c common.o -o writeany
+
+common.o:	common.c common.h
+		$(CC) -O -c common.c
 
 install:	all
 		cp -p readany writeany $(BINDIR)
