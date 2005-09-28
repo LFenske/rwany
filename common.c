@@ -11,9 +11,11 @@ getpos(char *arg, int fd, int prev)
   int value;
   int rel;
   int sign = 1;
+  int relative = 0;
   switch (*arg) {
   case '+':
     rel = prev;
+    relative = 1;
     arg++;
     break;
   case '-':
@@ -25,6 +27,7 @@ getpos(char *arg, int fd, int prev)
     }
     rel = buf.st_size;
     sign = -1;
+    relative = 1;
     arg++;
     break;
   }
@@ -54,8 +57,8 @@ getpos(char *arg, int fd, int prev)
       }
       p++;
     }
-    value = 44+(((hour*60+min)*60+sec)*75+frame)*2352;
-    fprintf(stderr, "%d:%.2d:%.2d.%.2d = %d\n", hour, min, sec, frame, value);
+    value = (relative ? 0 : 44) + (((hour*60+min)*60+sec)*75+frame)*2352;
+    /*fprintf(stderr, "%d:%.2d:%.2d.%.2d = %d\n", hour, min, sec, frame, value);*/
   } else {
     value = strtol(arg, (char **)NULL, 0);
   }
