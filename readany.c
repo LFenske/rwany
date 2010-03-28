@@ -1,6 +1,7 @@
 /* $Header$ */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -52,7 +53,7 @@ char **argv;
     long actual;
     thissize = size>BUFSIZE ? BUFSIZE : size;
     if (thissize != (actual=read(fd, buf, thissize))) {
-      fprintf(stderr, "%s: read: at 0x%x tried 0x%x got 0x%x\n",
+      fprintf(stderr, "%s: read: at 0x%lx tried 0x%x got 0x%lx\n",
               argv[0], place, thissize, actual);
       perror("read from device");
       exit(2);

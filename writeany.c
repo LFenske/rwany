@@ -1,6 +1,7 @@
 /* $Header$ */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -63,7 +64,7 @@ char **argv;
       index += actual;
     }
     if (thissize != (actual=write(fd, buf, thissize))) {
-      fprintf(stderr, "%s: write: at 0x%x tried 0x%x got 0x%x\n",
+      fprintf(stderr, "%s: write: at 0x%lx tried 0x%x got 0x%lx\n",
               argv[0], place, thissize, actual);
       perror("write to device");
       exit(2);
