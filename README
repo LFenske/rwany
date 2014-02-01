@@ -1,0 +1,6 @@
+This is an ancient, but useful, program to read or write arbitrary
+portions of a file or device.  It could probably be done better now as
+a simple script.
+
+Looks like it was originally checked in to source control (probably RCS)
+on 1992-08-10 and has had few changes since.
