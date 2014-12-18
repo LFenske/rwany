@@ -1,7 +1,7 @@
 #ifndef __common_h
 #define __common_h
 
-#define BUFSIZE 0x40000
+#define BUFSIZE (0x10*0x10000)
 
 #ifdef __common_c
 #define GLOBAL
