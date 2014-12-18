@@ -19,7 +19,7 @@ common.o:	common.c common.h
 install:	all
 		cp -p readany writeany $(BINDIR)
 		cp -p any.1 $(MANDIR)/readany.1
-		ln $(MANDIR)/readany.1 $(MANDIR)/writeany.1
+		ln -f $(MANDIR)/readany.1 $(MANDIR)/writeany.1
 
 clean:
 		rm -f *.o a.out core
