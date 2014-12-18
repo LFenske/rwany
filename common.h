@@ -11,6 +11,6 @@
 
 GLOBAL char buf[BUFSIZE];
 
-int getpos(char *arg, int fd, int prev);
+long getpos(char *arg, int fd, long prev);
 
 #endif /* __common_h */

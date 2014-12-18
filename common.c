@@ -6,11 +6,11 @@
 #include <sys/stat.h>
 #include <string.h>
 
-int
-getpos(char *arg, int fd, int prev)
+long
+getpos(char *arg, int fd, long prev)
 {
-  int value;
-  int rel;
+  long value;
+  long rel;
   int sign = 1;
   int relative = 0;
   switch (*arg) {
@@ -39,7 +39,7 @@ getpos(char *arg, int fd, int prev)
   if (strchr(arg, ':') || strchr(arg, '.')) {
     int hour = 0, min = 0, sec = 0, frame = 0;
     char *p = arg;
-    int curval = 0;
+    long curval = 0;
     while (1) {
       if (*p == ':' || *p == '.' || *p == '\0') {
         hour = min ;
